@@ -24,8 +24,8 @@ Dự án này là một hệ thống đặt chỗ được xây dựng bằng La
 1. **Clone Repository**
 
     ```bash
-    git clone https://github.com/username/repository.git
-    cd repository
+    git clone https://github.com/hunghero32/Booking.git
+    cd Booking
     ```
 
 2. **Cài đặt các Phụ thuộc**
