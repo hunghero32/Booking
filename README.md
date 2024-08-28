@@ -84,7 +84,7 @@ Nếu bạn muốn đóng góp vào dự án này, vui lòng làm theo các bư�
 
 ## Liên Hệ
 
-Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với chúng tôi qua email: [your-email@example.com](mailto:your-email@example.com).
+Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với chúng tôi qua email: [hung87800@gmail.com](mailto:hung87800@gmail.com).
 
 ## Giấy phép
 
