@@ -7,60 +7,86 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Dự Án Booking
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Dự án này là một hệ thống đặt chỗ được xây dựng bằng Laravel và Bootstrap. Nó cho phép người dùng thực hiện các giao dịch đặt chỗ, quản lý thông tin đặt chỗ, và theo dõi lịch sử giao dịch.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tính Năng
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Đăng ký và Đăng nhập**: Người dùng có thể tạo tài khoản và đăng nhập để sử dụng hệ thống.
+- **Quản lý Đặt chỗ**: Người dùng có thể tạo, xem, sửa, và xóa đặt chỗ.
+- **Xem Lịch sử Đặt chỗ**: Theo dõi các đặt chỗ đã thực hiện.
+- **Quản lý Người dùng**: Quản lý thông tin người dùng và quyền truy cập.
+- **Giao diện Responsive**: Giao diện được thiết kế để hoạt động tốt trên các thiết bị di động và máy tính để bàn.
 
-## Learning Laravel
+## Cài Đặt
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clone Repository**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    ```bash
+    git clone https://github.com/username/repository.git
+    cd repository
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Cài đặt các Phụ thuộc**
 
-## Laravel Sponsors
+    ```bash
+    composer install
+    npm install
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Tạo File `.env`**
 
-### Premium Partners
+    ```bash
+    cp .env.example .env
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. **Cấu hình Cơ sở dữ liệu**
 
-## Contributing
+    Chỉnh sửa file `.env` để cấu hình thông tin kết nối cơ sở dữ liệu của bạn.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Tạo Khóa Ứng dụng**
 
-## Code of Conduct
+    ```bash
+    php artisan key:generate
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Chạy Migrations**
 
-## Security Vulnerabilities
+    ```bash
+    php artisan migrate
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7. **Chạy Ứng dụng**
 
-## License
+    ```bash
+    php artisan serve
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    Truy cập ứng dụng tại `http://localhost:8000`
+
+## Cấu Trúc Dự Án
+
+- `app/Models`: Chứa các mô hình Eloquent.
+- `app/Http/Controllers`: Chứa các controller xử lý logic.
+- `resources/views`: Chứa các view được sử dụng trong ứng dụng.
+- `database/migrations`: Chứa các file migration để tạo bảng cơ sở dữ liệu.
+
+## Đóng Góp
+
+Nếu bạn muốn đóng góp vào dự án này, vui lòng làm theo các bước sau:
+
+1. Fork repository này.
+2. Tạo một nhánh mới (`git checkout -b feature-branch`).
+3. Thực hiện các thay đổi và commit (`git commit -am 'Add new feature'`).
+4. Đẩy nhánh lên (`git push origin feature-branch`).
+5. Tạo một Pull Request.
+
+## Liên Hệ
+
+Nếu bạn có bất kỳ câu hỏi nào, hãy liên hệ với chúng tôi qua email: [your-email@example.com](mailto:your-email@example.com).
+
+## Giấy phép
+
+Dự án này được cấp phép theo [Giấy phép MIT](LICENSE).
+
