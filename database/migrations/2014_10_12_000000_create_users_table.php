@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id(); // Khóa chính 'id'
-            $table->string('name')->unique(); // Tên người dùng duy nhất
+            $table->string('username')->unique(); // Tên người dùng duy nhất
             $table->string('fullname')->nullable(); // Tên đầy đủ 
             $table->string('email')->unique(); // Email duy nhất
             $table->string('phone')->unique(); // Số điện thoại duy nhất

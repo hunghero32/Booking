@@ -27,7 +27,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'login' => ['required', 'string'],
+            // 'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
         ];
     }
@@ -37,21 +38,47 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    // ======================Version only Email ==================================
+    // public function authenticate(): void
+    // {
+    //     $this->ensureIsNotRateLimited();
+
+    //     if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+    //         RateLimiter::hit($this->throttleKey());
+
+    //         throw ValidationException::withMessages([
+    //             'email' => trans('auth.failed'),
+    //         ]);
+    //     }
+
+    //     RateLimiter::clear($this->throttleKey());
+    // }
+    // ======================Version Email or Username ==================================
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+    
+        $loginField = $this->input('login');
+    
+        // Kiểm tra nếu đầu vào là email, username hoặc phone
+        if (filter_var($loginField, FILTER_VALIDATE_EMAIL)) {
+            $fieldType = 'email';
+        } elseif (preg_match('/^[0-9]{10,11}$/', $loginField)) { // Kiểm tra nếu là số điện thoại (10-11 số)
+            $fieldType = 'phone';
+        } else {
+            $fieldType = 'username';
+        }
+    
+        if (!Auth::attempt([$fieldType => $loginField, 'password' => $this->password], $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
+    
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'login' => __('auth.failed'),
             ]);
         }
-
+    
         RateLimiter::clear($this->throttleKey());
     }
-
     /**
      * Ensure the login request is not rate limited.
      *
@@ -66,9 +93,16 @@ class LoginRequest extends FormRequest
         event(new Lockout($this));
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
-
+    // ======================Version only Email ==================================
+        // throw ValidationException::withMessages([
+        //     'email' => trans('auth.throttle', [
+        //         'seconds' => $seconds,
+        //         'minutes' => ceil($seconds / 60),
+        //     ]),
+        // ]);
+    // ======================Version Email or Username ==================================
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            'login' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -80,6 +114,9 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        // return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+
+         // Sử dụng trường 'login' thay vì 'email'
+         return Str::transliterate(Str::lower($this->input('login')).'|'.$this->ip());
     }
 }
